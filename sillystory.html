@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>
+            Silly story generator
+        </title>
+        <script type="text/javascript">
+            function sillyStoryGenerator(){
+                var customName = document.getElementById("getName").value;
+
+                var story = "It was the end of the month. Maunta got her salary. She decided to buy a new pair of shoes. She went to shopname later that day. She bought a pair of shoesbought. She paid 50 USD for her new shoes. She was jumping with joy on her way back home.";
+
+                var replaceShop = ["Bhatbhateni","Kathmandu Mall","City Center"];
+                var replaceShoes = ["high heels from  Valentino","boots from Sorel","sneakers from Reebok"];
+
+                var shopStory = replaceShop[Math.floor(Math.random()*replaceShop.length)];
+                var shoeStory= replaceShoes[Math.floor(Math.random()*replaceShoes.length)];
+
+                var userStory = story;
+                userStory = userStory.replace('shopname',shopStory);
+                userStory = userStory.replace('shoesbought',shoeStory);
+            
+                if (customName !== '')
+                    userStory = userStory.replace('Maunta',customName);
+
+                if (document.getElementById("pound").checked)
+                    userStory = userStory.replace("50 USD","35 Pound");
+
+                var pTag = document.getElementById("displayStory");
+                pTag.innerText = userStory;
+            }
+        </script>
+    </head>
+
+    <body>
+        Enter custom name: <input id="getName" type="text" name = "customName"><br><br>
+        
+        <form>
+            <input type="radio" name = "currency" value="cus" checked>US
+            <input id = "pound" type="radio" name = "currency" value="cuk">UK
+        </form>
+
+        <br>
+        <button onClick="sillyStoryGenerator()">Generate random story</button>
+        
+        <br><br>
+        <p id="displayStory" style="width:30%; background-color:lightblue;"></p>
+    </body>
+
+</html>
